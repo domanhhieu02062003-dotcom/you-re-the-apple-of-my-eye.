@@ -225,6 +225,82 @@
         message.className = "message";
         message.textContent = "Đúng rồi! 💗 Mật khẩu đã chính xác.";
         // Sau này sẽ nối bước này với trang thư tình.
+        ```javascript
+    setTimeout(() => {
+        document.querySelector("main").innerHTML = `
+            <h1>💌 Gửi em yêu 💌</h1>
+            <p>Có một bức thư nhỏ dành riêng cho em...</p>
+
+            <div id="envelope" style="
+                font-size:100px;
+                cursor:pointer;
+                margin:30px auto;
+            ">💌</div>
+
+            <p id="hint">Chạm vào bức thư để mở nhé, em yêu!</p>
+
+            <div id="letter" style="
+                display:none;
+                background:#fffdf8;
+                padding:25px;
+                border-radius:20px;
+                text-align:left;
+                line-height:1.9;
+                color:#a12d59;
+            ">
+                <h2 style="text-align:center">
+                    Gửi cô gái anh thương ❤️
+                </h2>
+
+                <p>Em yêu à, anh đã chuẩn bị món quà nhỏ này dành riêng cho em.</p>
+
+                <p>Anh mong chúng mình sẽ luôn chân thành, biết lắng nghe và cùng nhau tạo nên thật nhiều kỷ niệm đẹp.</p>
+
+                <p>Cảm ơn em vì đã xuất hiện trong câu chuyện của anh. Mong em luôn vui vẻ, bình yên và hạnh phúc.</p>
+
+                <p style="text-align:right">
+                    Thương em thật nhiều ❤️
+                </p>
+
+                <button id="flowers" style="
+                    display:block;
+                    margin:20px auto;
+                    padding:12px 20px;
+                    border:0;
+                    border-radius:25px;
+                    background:#d6336c;
+                    color:white;
+                    cursor:pointer;
+                ">Món quà tiếp theo 🌹</button>
+            </div>
+
+            <div id="flowerPage" style="display:none">
+                <h2>Anh tặng em cả một vườn hoa 🌸</h2>
+                <div id="flowerGarden"
+                     style="font-size:30px;line-height:1.8"></div>
+                <p>Mong em luôn hạnh phúc nhé! 🍀❤️</p>
+            </div>
+        `;
+
+        document.getElementById("envelope").onclick = () => {
+            document.getElementById("envelope").style.display = "none";
+            document.getElementById("hint").style.display = "none";
+            document.getElementById("letter").style.display = "block";
+        };
+
+        document.getElementById("flowers").onclick = () => {
+            document.getElementById("letter").style.display = "none";
+            document.getElementById("flowerPage").style.display = "block";
+
+            const garden = document.getElementById("flowerGarden");
+            const flowers = ["🌹", "🌷", "🌸", "🌺", "🌼", "🌻", "💐", "🍀"];
+
+            for (let i = 0; i < 100; i++) {
+                garden.textContent += flowers[i % flowers.length] + " ";
+            }
+        };
+    }, 1200);
+
       } else {
         message.className = "message error";
         message.textContent = "Mật khẩu chưa đúng rồi, thử lại nhé 💌";
