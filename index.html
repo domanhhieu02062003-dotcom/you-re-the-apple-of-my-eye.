@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fff5f3">
+  <title>You’re the Apple of My Eye ♡</title>
+  <style>
+    * { box-sizing: border-box; }
+    :root {
+      --pink: #ef8fa2;
+      --pink-dark: #b95e70;
+      --green: #9bc77c;
+      --cream: #fff8f1;
+    }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 28px 16px;
+      overflow-x: hidden;
+      font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+      color: var(--pink-dark);
+      background:
+        radial-gradient(ellipse at 50% 45%, rgba(255,255,255,.95), transparent 58%),
+        linear-gradient(135deg, #fffaf5, #fff0f0 55%, #fff8f1);
+    }
+    .page {
+      width: min(100%, 760px);
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      animation: appear .9s ease both;
+    }
+    .brand {
+      font-size: clamp(18px, 3vw, 25px);
+      letter-spacing: 1px;
+      color: #c86e7d;
+      margin: 0 0 30px;
+    }
+    .brand span { color: #ee8ca0; }
+    h1 {
+      font-size: clamp(23px, 4vw, 34px);
+      line-height: 1.4;
+      margin: 0 0 10px;
+      font-weight: 600;
+    }
+    .subtitle {
+      margin: 0;
+      font-size: clamp(15px, 2.5vw, 21px);
+      color: #cf929a;
+    }
+    .divider {
+      margin: 22px auto 8px;
+      color: #df9aa4;
+      font-size: 25px;
+      letter-spacing: 9px;
+    }
+    .envelope {
+      width: min(100%, 520px);
+      height: auto;
+      display: block;
+      margin: 8px auto 10px;
+      filter: drop-shadow(0 10px 18px rgba(192, 116, 126, .08));
+      animation: float 4s ease-in-out infinite;
+    }
+    form {
+      width: min(100%, 470px);
+      margin: 0 auto;
+    }
+    .input-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border: 2px solid #f3b4be;
+      background: rgba(255,255,255,.62);
+      border-radius: 999px;
+      padding: 0 19px;
+      min-height: 62px;
+      box-shadow: 0 4px 18px rgba(222, 137, 151, .06);
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .input-wrap:focus-within {
+      border-color: #e58c9d;
+      box-shadow: 0 0 0 4px rgba(239,143,162,.13);
+    }
+    .lock { font-size: 22px; }
+    input {
+      min-width: 0;
+      width: 100%;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: #a95668;
+      font-size: 18px;
+      font-family: inherit;
+      letter-spacing: 2px;
+    }
+    input::placeholder { color: #d2a0a6; letter-spacing: 0; }
+    .show-password {
+      border: 0;
+      background: transparent;
+      color: #d68a98;
+      font-size: 20px;
+      cursor: pointer;
+      padding: 5px;
+    }
+    .password-hint {
+      margin: 12px 8px 0;
+      color: #c98b96;
+      font-size: 14px;
+      font-style: italic;
+      line-height: 1.5;
+    }
+    .open-btn {
+      margin-top: 25px;
+      min-width: 230px;
+      border: 0;
+      border-radius: 999px;
+      padding: 16px 32px;
+      color: white;
+      background: linear-gradient(135deg, #f4a0b0, #ed8199);
+      font: inherit;
+      font-size: 19px;
+      cursor: pointer;
+      box-shadow: 0 8px 18px rgba(225, 123, 146, .2);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .open-btn:hover { transform: translateY(-2px); box-shadow: 0 11px 22px rgba(225,123,146,.28); }
+    .open-btn:active { transform: scale(.98); }
+    .message {
+      min-height: 26px;
+      margin: 15px 0 0;
+      font-size: 15px;
+      color: #b95e70;
+    }
+    .message.error { color: #c65b70; }
+    .bottom-heart { margin-top: 15px; color: #e79aa7; font-size: 23px; letter-spacing: 8px; }
+    .decoration {
+      position: fixed;
+      font-size: clamp(28px, 5vw, 52px);
+      opacity: .75;
+      pointer-events: none;
+      animation: twinkle 3.5s ease-in-out infinite;
+    }
+    .d1 { left: 5%; top: 8%; color: #91bd73; }
+    .d2 { right: 6%; top: 24%; color: #9bc77c; animation-delay: .7s; }
+    .d3 { left: 8%; bottom: 13%; color: #9bc77c; animation-delay: 1.2s; }
+    .d4 { right: 7%; bottom: 7%; color: #91bd73; animation-delay: .4s; }
+    .sparkle { position: fixed; color: #efb5a4; opacity: .75; pointer-events: none; }
+    .s1 { left: 8%; top: 48%; font-size: 27px; }
+    .s2 { right: 11%; top: 48%; font-size: 24px; }
+    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+    @keyframes appear { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes twinkle { 0%,100% { transform: rotate(-5deg) scale(1); } 50% { transform: rotate(6deg) scale(1.08); } }
+    @media (max-width: 520px) {
+      body { padding: 25px 18px; }
+      .brand { margin-bottom: 24px; }
+      .divider { margin-top: 17px; }
+      .envelope { width: min(100%, 400px); }
+      .input-wrap { min-height: 56px; }
+      .password-hint {
+      margin: 12px 8px 0;
+      color: #c98b96;
+      font-size: 14px;
+      font-style: italic;
+      line-height: 1.5;
+    }
+    .open-btn { min-width: 205px; }
+      .d1 { left: 1%; top: 2%; }
+      .d2 { right: 1%; top: 17%; }
+      .d3 { left: 1%; bottom: 4%; }
+      .d4 { right: 1%; bottom: 3%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="decoration d1" aria-hidden="true">☘</div>
+  <div class="decoration d2" aria-hidden="true">☘</div>
+  <div class="decoration d3" aria-hidden="true">☘</div>
+  <div class="decoration d4" aria-hidden="true">☘</div>
+  <div class="sparkle s1" aria-hidden="true">✧</div>
+  <div class="sparkle s2" aria-hidden="true">✧</div>
+
+  <main class="page">
+    <p class="brand"><span>♡</span> You’re the Apple of My Eye <span>♡</span></p>
+    <h1>Nhập mật khẩu để mở bức thư đặc biệt 💗</h1>
+    <p class="subtitle">Chỉ những người thật lòng mới có thể thấy...</p>
+    <div class="divider" aria-hidden="true">— ❀ —</div>
+
+    <img class="envelope" src="./assets/phong_bi_chua_mo.png" alt="Phong bì tình yêu màu hồng vẫn đang đóng" onerror="this.style.display='none'; document.getElementById('imageFallback').style.display='block'">
+    <div id="imageFallback" style="display:none; margin:18px auto 24px; font-size:100px; line-height:1.2;" aria-label="Phong bì tình yêu">💌</div>
+
+    <form id="passwordForm">
+      <div class="input-wrap">
+        <span class="lock" aria-hidden="true">♙</span>
+        <input id="password" type="password" placeholder="Nhập mật khẩu..." autocomplete="off" aria-label="Nhập mật khẩu" required>
+        <button class="show-password" type="button" id="togglePassword" aria-label="Hiện hoặc ẩn mật khẩu">◎</button>
+      </div>
+      <p class="password-hint">Gợi ý: Ngày đầu tiên mà chúng mình yêu nhau ♡</p>
+      <button class="open-btn" type="submit">Mở thư ♡</button>
+      <p id="message" class="message" role="status" aria-live="polite"></p>
+    </form>
+    <div class="bottom-heart" aria-hidden="true">──── ♡ ────</div>
+  </main>
+
+  <script>
+    const form = document.getElementById("passwordForm");
+    const passwordInput = document.getElementById("password");
+    const message = document.getElementById("message");
+    const togglePassword = document.getElementById("togglePassword");
+
+    togglePassword.addEventListener("click", () => {
+      const showing = passwordInput.type === "text";
+      passwordInput.type = showing ? "password" : "text";
+      togglePassword.textContent = showing ? "◎" : "◉";
+    });
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      if (passwordInput.value === "0107") {
+        message.className = "message";
+        message.textContent = "Đúng rồi! 💗 Mật khẩu đã chính xác.";
+        // Sau này sẽ nối bước này với trang thư tình.
+      } else {
+        message.className = "message error";
+        message.textContent = "Mật khẩu chưa đúng rồi, thử lại nhé 💌";
+        passwordInput.value = "";
+        passwordInput.focus();
+      }
+    });
+  </script>
+</body>
+</html>
