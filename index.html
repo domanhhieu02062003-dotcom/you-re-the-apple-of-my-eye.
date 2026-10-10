@@ -14,6 +14,31 @@
       --cream: #fff8f1;
     }
     body {
+      
+<audio id="backgroundMusic" autoplay loop>
+  <source src="./assets/nhac-nen.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  const bgMusic = document.getElementById("backgroundMusic");
+
+  bgMusic.volume = 0.35;
+
+  // Thử phát nhạc ngay khi mở website
+  bgMusic.play().catch(() => {
+    // Nếu trình duyệt chặn tự phát, phát sau lần tương tác đầu tiên
+    const startMusic = () => {
+      bgMusic.play().catch(() => {});
+      document.removeEventListener("click", startMusic);
+      document.removeEventListener("touchstart", startMusic);
+      document.removeEventListener("keydown", startMusic);
+    };
+
+    document.addEventListener("click", startMusic);
+    document.addEventListener("touchstart", startMusic);
+    document.addEventListener("keydown", startMusic);
+  });
+</script>
       margin: 0;
       min-height: 100vh;
       display: flex;
